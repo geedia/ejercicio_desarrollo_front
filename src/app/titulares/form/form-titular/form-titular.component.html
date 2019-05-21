@@ -1,0 +1,72 @@
+<div class="card ">
+    <div class="card-header bg-dark text-light">
+      <h5 *ngIf="!existe"> {{ tituloCrear }}</h5>
+      <h5 *ngIf="existe"> {{ tituloEditar }}</h5>
+    </div>
+    <div class="card-body">
+      <form>
+
+          <div class="form-group row">
+              <label for="tipo" class="col-sm-2 col-form-label">Tipo:</label>
+              <div class="col-sm-10">
+                  <select class="form-control" [(ngModel)]="titular.tipo_titular" (ngModelChange)="dataChanged($event)" name="tipo" required>
+                      <option value="F">FISICA</option>
+                      <option value="J">JURIDICA</option>
+
+                    </select>
+
+              </div>
+            </div>
+          <div class="form-group row" *ngIf="!existe">
+              <label for="cuit" class="col-sm-2 col-form-label">CUIT:</label>
+              <div class="col-sm-10">
+                <input type="text"  class="form-control" [(ngModel)]="titular.cuit" name="cuit" required>
+              </div>
+            </div>
+        <div class="form-group row" *ngIf="!juridica">
+          <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control"  [(ngModel)]="titular.nombre" name="nombre" maxlength="80">
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="!juridica">
+          <label for="apellido" class="col-sm-2 col-form-label">Apellido:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="titular.apellido" name="apellido"  maxlength="250">
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="!juridica">
+            <label for="dni" class="col-sm-2 col-form-label">DNI:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" [(ngModel)]="titular.dni" name="dni"  maxlength="10">
+            </div>
+          </div>
+        <div class="form-group row" *ngIf="juridica as J">
+            <label for="razon" class="col-sm-2 col-form-label">Razon Social:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" [(ngModel)]="titular.razon_social" name="razon"  maxlength="100">
+            </div>
+          </div>
+
+          <div class="form-group row" *ngIf="juridica as J">
+              <label for="anio" class="col-sm-2 col-form-label">Año de Fundacion:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="titular.anio" name="anio"  maxlength="4">
+              </div>
+            </div>
+
+
+        <div class="form-group row">
+
+            <div class="col-sm-6">
+              <button class="btn-primary" role="button" (click)='create()' *ngIf="!existe  else elseblock">Crear</button>
+              <ng-template #elseblock>
+                  <button class="btn-primary" (click)='update()' role='button' >Editar</button>
+              </ng-template>
+               <button class="btn-light" role="button" [routerLink]="[ '/titulares']">Cancelar</button>
+            </div>
+          </div>
+
+      </form>
+      </div>
+      </div>

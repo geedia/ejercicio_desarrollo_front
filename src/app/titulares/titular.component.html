@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header">
+        <h2 class="border border-primary text-secondary  border-left-0 border-right-0 border-top-0 text-center">Listado de Titulares</h2>
+    </div>
+    <div class="card-body">
+        <div class="my-2 text-left">
+            <button class="btn-primary btn btn-rounded" type="button" [routerLink]="[ '/titulares/form']">Crear Titular</button>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark text-center">
+              <tr>
+                <th>CUIT</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>DNI</th>
+                <th>RAZON SOCIAL</th>
+                <th>TIPO TITULAR</th>
+                <th>AÑO</th>
+                <th>ACCION</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let titular of titulares">
+                <td>{{titular.cuit}}</td>
+                <td>{{titular.nombre}}</td>
+                <td>{{titular.apellido}}</td>
+                <td>{{titular.dni}}</td>
+                <td>{{titular.razon_social}}</td>
+                <td> <select value="{{titular.tipo_titular}}" disabled>
+                    <option value="F">FISICA</option>
+                    <option value="J">JURIDICA</option>
+
+                  </select></td>
+                <td>{{titular.anio}}</td>
+
+                 <td class="text-center align-middle">
+                    <button type="button" name="button" [routerLink]="[ '/titulares/form', titular.cuit ]" class="btn btn-primary btn-sm">Editar</button>
+                    <button type="button" (click)="delete(titular)" class="btn btn-danger btn-sm" name="eliminar">Eliminar</button>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+          <p></p>
+    </div>
+  </div>
